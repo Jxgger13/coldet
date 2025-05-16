@@ -1,10 +1,16 @@
 
 #include <SFML/Graphics.hpp>
+#include "Ball.h"
 
 int main()
 {
     // create the window
     sf::RenderWindow window(sf::VideoMode({800, 600}), "My window");
+
+    // set framerate
+    window.setFramerateLimit(60);
+
+    Ball ball(30.f, {100.f, 100.f}, {5.f, 4.f}); // radius, pos, velocity
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -17,11 +23,13 @@ int main()
                 window.close();
         }
 
+	ball.update(window);
+
         // clear the window with black color
         window.clear(sf::Color::Black);
 
         // draw everything here...
-        // window.draw(...);
+        ball.draw(window);
 
         // end the current frame
         window.display();
